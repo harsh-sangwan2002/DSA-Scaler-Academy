@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solution {
+public class postorder {
 
     // Definition for binary tree
     class TreeNode {
@@ -21,12 +21,12 @@ public class Solution {
         if (node == null)
             return;
 
-        list.add(node.val);
         helper(node.left, list);
         helper(node.right, list);
+        list.add(node.val);
     }
 
-    public int[] preorderTraversal(TreeNode A) {
+    public int[] postorderTraversal(TreeNode A) {
 
         if (A == null)
             return new int[] {};
