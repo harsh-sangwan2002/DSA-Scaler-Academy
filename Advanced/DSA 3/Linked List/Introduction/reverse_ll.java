@@ -1,15 +1,16 @@
-//  Definition for singly-linked list.
-class ListNode {
-    public int val;
-    public ListNode next;
-
-    ListNode(int x) {
-        val = x;
-        next = null;
-    }
-}
-
 public class reverse_ll {
+
+    // Definition for singly-linked list.
+    class ListNode {
+        public int val;
+        public ListNode next;
+
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
+
     public ListNode reverseList(ListNode A) {
 
         if (A == null || A.next == null)

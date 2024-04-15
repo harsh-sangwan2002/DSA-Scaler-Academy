@@ -1,10 +1,11 @@
 public class design_ll {
+
     public static class Node {
 
         int val;
         Node next;
 
-        public Node(int val) {
+        Node(int val) {
             this.val = val;
             this.next = null;
         }
@@ -14,7 +15,8 @@ public class design_ll {
     static int size = 0;
 
     public static void insert_node(int position, int value) {
-
+        // @params position, integer
+        // @params value, integer
         if (position >= 1 && position <= size + 1) {
 
             Node node = new Node(value);
@@ -40,50 +42,44 @@ public class design_ll {
     }
 
     public static void delete_node(int position) {
-
-        if (head == null)
-            return;
-
+        // @params position, integer
         if (position >= 1 && position <= size) {
+
+            if (size == 1) {
+                size--;
+                return;
+            }
 
             if (position == 1) {
                 head = head.next;
-                if (size == 1)
-                    head = null;
+                size--;
+                return;
             }
 
-            else {
+            Node temp = head;
 
-                Node temp = head;
+            for (int i = 1; i < position - 1; i++)
+                temp = temp.next;
 
-                for (int i = 1; i < position - 1; i++)
-                    temp = temp.next;
-
-                temp.next = temp.next.next;
-            }
-
+            temp.next = temp.next.next;
             size--;
         }
     }
 
     public static void print_ll() {
+        // Output each element followed by a space
+        Node node = head;
 
-        Node temp = head;
-        int flag = 0;
+        while (node != null) {
 
-        while (temp != null) {
-
-            if (flag == 0) {
-                System.out.print(temp.val);
-                flag = 1;
-            }
+            if (node.next == null)
+                System.out.print(node.val);
 
             else
-                System.out.print(" " + temp.val);
+                System.out.print(node.val + " ");
 
-            temp = temp.next;
+            node = node.next;
         }
-
     }
 
 }
