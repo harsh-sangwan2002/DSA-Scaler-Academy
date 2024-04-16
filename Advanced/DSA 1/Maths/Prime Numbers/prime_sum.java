@@ -1,36 +1,30 @@
 public class prime_sum {
 
-    private int[] primes(int n) {
+    public int[] primesum(int A) {
 
-        int[] prime = new int[n + 1];
+        boolean[] prime = new boolean[A + 1];
 
-        for (int i = 2; i <= Math.sqrt(n); i++) {
+        for (int i = 2; i <= Math.sqrt(A); i++) {
 
-            if (prime[i] == 0) {
+            if (!prime[i]) {
 
-                for (int j = i * i; j <= n; j += i)
-                    prime[j] = 1;
+                for (int j = i * i; j <= A; j += i)
+                    prime[j] = true;
             }
         }
 
-        return prime;
-    }
-
-    public int[] primesum(int A) {
-
-        int[] prime = primes(A);
-        int[] ans = new int[2];
+        int[] res = new int[2];
 
         for (int i = 2; i <= A; i++) {
 
-            if (prime[i] == 0 && prime[A - i] == 0) {
+            if (!prime[i] && !prime[A - i]) {
 
-                ans[0] = i;
-                ans[1] = A - i;
-                return ans;
+                res[0] = i;
+                res[1] = A - i;
+                return res;
             }
         }
 
-        return ans;
+        return res;
     }
 }
