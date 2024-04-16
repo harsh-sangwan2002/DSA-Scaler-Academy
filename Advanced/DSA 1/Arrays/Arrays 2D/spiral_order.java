@@ -2,41 +2,41 @@ public class spiral_order {
 
     public int[][] generateMatrix(int A) {
 
+        int[][] res = new int[A][A];
         int minR = 0, minC = 0, maxR = A - 1, maxC = A - 1;
-        int ne = A * A, count = 0;
-        int[][] mat = new int[A][A];
+        int count = 1, ne = A * A;
 
-        while (count < ne) {
+        while (count <= ne) {
 
             // top wall
-            for (int c = minC; c <= maxC && count < ne; c++) {
-                mat[minR][c] = count + 1;
+            for (int c = minC; c <= maxC && count <= ne; c++) {
+                res[minR][c] = count;
                 count++;
             }
             minR++;
 
             // right wall
-            for (int r = minR; r <= maxR && count < ne; r++) {
-                mat[r][maxR] = count + 1;
+            for (int r = minR; r <= maxR && count <= ne; r++) {
+                res[r][maxC] = count;
                 count++;
             }
             maxC--;
 
             // bottom wall
-            for (int c = maxC; c >= minC && count < ne; c--) {
-                mat[maxR][c] = count + 1;
+            for (int c = maxC; c >= minC && count <= ne; c--) {
+                res[maxR][c] = count;
                 count++;
             }
             maxR--;
 
             // left wall
-            for (int r = maxR; r >= minR && count < ne; r--) {
-                mat[r][minC] = count + 1;
+            for (int r = maxR; r >= minR && count <= ne; r--) {
+                res[r][minC] = count;
                 count++;
             }
             minC++;
         }
 
-        return mat;
+        return res;
     }
 }
