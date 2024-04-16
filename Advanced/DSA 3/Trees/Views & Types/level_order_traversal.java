@@ -32,7 +32,6 @@ public class level_order_traversal {
 
     public int[][] verticalOrderTraversal(TreeNode A) {
 
-        List<List<Integer>> res = new ArrayList<>();
         HashMap<Integer, List<Integer>> map = new HashMap<>();
         Queue<Pair> q = new ArrayDeque<>();
         q.add(new Pair(A, 0));
