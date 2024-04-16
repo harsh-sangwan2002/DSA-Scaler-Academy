@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Queue;
 
-public class Solution {
+public class level_order_traversal {
 
     // Definition for binary tree
     class TreeNode {
