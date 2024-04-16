@@ -12,46 +12,45 @@ public class delete_one {
 
     public int solve(int[] A) {
 
-        int[] pre = new int[A.length];
-        int[] suf = new int[A.length];
+        int[] left = new int[A.length];
+        int[] right = new int[A.length];
 
         for (int i = 0; i < A.length; i++) {
 
             if (i == 0)
-                pre[i] = A[i];
+                left[i] = A[i];
 
             else
-                pre[i] = GCD(pre[i - 1], A[i]);
+                left[i] = GCD(left[i - 1], A[i]);
         }
 
         for (int i = A.length - 1; i >= 0; i--) {
 
             if (i == A.length - 1)
-                suf[i] = A[i];
+                right[i] = A[i];
 
             else
-                suf[i] = GCD(suf[i + 1], A[i]);
+                right[i] = GCD(right[i + 1], A[i]);
         }
 
-        int ans = 1;
+        int max = Integer.MIN_VALUE;
 
         for (int i = 0; i < A.length; i++) {
 
+            int gcd = 0;
+
             if (i == 0)
-                ans = Math.max(ans, suf[i + 1]);
+                gcd = right[i + 1];
 
             else if (i == A.length - 1)
-                ans = Math.max(ans, pre[i - 1]);
+                gcd = left[i - 1];
 
-            else {
+            else
+                gcd = GCD(left[i - 1], right[i + 1]);
 
-                int left = pre[i - 1];
-                int right = suf[i + 1];
-                int gcd = GCD(left, right);
-                ans = Math.max(ans, gcd);
-            }
+            max = Math.max(gcd, max);
         }
 
-        return ans;
+        return max;
     }
 }
