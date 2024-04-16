@@ -6,7 +6,6 @@ import java.util.Queue;
 public class level_order {
 
     // Definition for binary tree
-
     class TreeNode {
         int val;
         TreeNode left;
