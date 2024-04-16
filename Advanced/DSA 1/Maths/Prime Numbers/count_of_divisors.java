@@ -7,7 +7,7 @@ public class count_of_divisors {
         int max = arr[0];
 
         for (int val : arr)
-            max = Math.max(max, val);
+            max = Math.max(val, max);
 
         return max;
     }
@@ -32,19 +32,13 @@ public class count_of_divisors {
             }
         }
 
-        int[] res = new int[A.length];
-        int idx = 0;
+        for (int i = 0; i < A.length; i++) {
 
-        for (int val : A) {
-
-            int count = 1;
-            HashMap<Integer, Integer> map = new HashMap<>();
-
-            if (val == 1) {
-
-                res[idx++] = 1;
+            if (A[i] == 1)
                 continue;
-            }
+
+            HashMap<Integer, Integer> map = new HashMap<>();
+            int count = 1, val = A[i];
 
             while (val > 1) {
 
@@ -55,9 +49,9 @@ public class count_of_divisors {
             for (int key : map.keySet())
                 count *= (map.get(key) + 1);
 
-            res[idx++] = count;
+            A[i] = count;
         }
 
-        return res;
+        return A;
     }
 }
