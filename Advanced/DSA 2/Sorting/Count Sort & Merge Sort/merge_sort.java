@@ -57,10 +57,12 @@ public class merge_sort {
 
     public static void main(String[] args) {
 
-        int[] arr = { 2, -1, 10, 3, 7, -90 };
+        int[] arr = { 10, 3, 18, 5, 6 };
+
         mergeSort(arr, 0, arr.length - 1);
 
         for (int val : arr)
-            System.out.println(val + " ");
+            System.out.print(val + " ");
+
     }
 }
