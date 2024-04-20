@@ -1,47 +1,60 @@
 public class allocate_books {
 
-    private boolean isValid(int[] arr, int count, int mid) {
+    private int[] findMinMax(int[] books) {
 
-        int student = 1;
-        int pages = 0;
+        int min = Integer.MAX_VALUE, max = 0;
 
-        for (int i = 0; i < arr.length; i++) {
+        for (int val : books) {
 
-            if (pages + arr[i] <= mid)
-                pages += arr[i];
+            min = Math.min(val, min);
+            max += val;
+        }
+
+        return new int[] { min, max };
+    }
+
+    private boolean valid(int[] books, int mid, int students) {
+
+        int pages = 0, k = 1;
+
+        for (int i = 0; i < books.length; i++) {
+
+            if (pages + books[i] <= mid)
+                pages += books[i];
 
             else {
 
-                student++;
+                k++;
 
-                if (student > count || arr[i] > mid)
+                if (k > students || books[i] > mid)
                     return false;
 
-                pages = arr[i];
+                pages = books[i];
             }
         }
 
         return true;
     }
 
-    public int books(int[] A, int B) {
+    public int books(int[] books, int B) {
 
-        if (B > A.length)
+        if (B > books.length)
             return -1;
 
-        int s = 0, e = (int) (1e9 + 7), ans = -1;
+        int[] minMax = findMinMax(books);
+        int lo = minMax[0], hi = minMax[1], ans = -1;
 
-        while (s <= e) {
+        while (lo <= hi) {
 
-            int mid = s + (e - s) / 2;
+            int mid = lo + (hi - lo) / 2;
 
-            if (isValid(A, B, mid)) {
+            if (valid(books, mid, B)) {
                 ans = mid;
-                e = mid - 1;
+                hi = mid - 1;
             }
 
             else
-                s = mid + 1;
+                lo = mid + 1;
         }
 
         return ans;
