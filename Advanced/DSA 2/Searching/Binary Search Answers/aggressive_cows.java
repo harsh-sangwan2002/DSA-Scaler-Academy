@@ -2,44 +2,60 @@ import java.util.Arrays;
 
 public class aggressive_cows {
 
-    private boolean isValid(int[] arr, int cows, int mid) {
+    private int[] findMinMax(int[] stalls) {
 
-        int count = 1;
-        int placed = arr[0];
+        int min = stalls[0], max = stalls[0];
 
-        for (int i = 1; i < arr.length; i++) {
+        for (int val : stalls) {
 
-            if (arr[i] - placed >= mid) {
+            min = Math.min(min, val);
+            max = Math.max(max, val);
+        }
 
-                count++;
+        return new int[] { min, max };
+    }
 
-                if (count == cows)
+    private boolean valid(int[] stalls, int mid, int cows) {
+
+        int last_placed = stalls[0];
+        int k = 1;
+
+        for (int i = 1; i < stalls.length; i++) {
+
+            if (stalls[i] - last_placed >= mid) {
+
+                k++;
+
+                if (k == cows)
                     return true;
 
-                placed = arr[i];
+                last_placed = stalls[i];
             }
         }
 
         return false;
     }
 
-    public int solve(int[] A, int B) {
+    public int solve(int[] stalls, int B) {
 
-        Arrays.sort(A);
+        Arrays.sort(stalls);
 
-        int s = 1, e = (int) (1e9 + 7), ans = 1;
+        int[] minMax = findMinMax(stalls);
+        int min = minMax[0], max = minMax[1];
 
-        while (s <= e) {
+        int lo = 1, hi = max - min, ans = hi;
 
-            int mid = s + (e - s) / 2;
+        while (lo <= hi) {
 
-            if (isValid(A, B, mid)) {
+            int mid = lo + (hi - lo) / 2;
+
+            if (valid(stalls, mid, B)) {
                 ans = mid;
-                s = mid + 1;
+                lo = mid + 1;
             }
 
             else
-                e = mid - 1;
+                hi = mid - 1;
         }
 
         return ans;
