@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class median_of_array {
+public class sol {
     // DO NOT MODIFY BOTH THE LISTS
     public double findMedianSortedArrays(final List<Integer> a, final List<Integer> b) {
 
