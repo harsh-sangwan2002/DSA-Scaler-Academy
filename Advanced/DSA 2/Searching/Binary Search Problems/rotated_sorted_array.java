@@ -3,7 +3,7 @@ public class rotated_sorted_array {
     // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
     public int search(final int[] A, int B) {
 
-        int lo = 0, hi = A.length - 1, ans = -1;
+        int lo = 0, hi = A.length - 1;
 
         while (lo <= hi) {
 
