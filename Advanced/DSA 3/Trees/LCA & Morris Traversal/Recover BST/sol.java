@@ -1,4 +1,4 @@
-public class recover_bst {
+public class sol {
 
     // Definition for binary tree
     class TreeNode {
