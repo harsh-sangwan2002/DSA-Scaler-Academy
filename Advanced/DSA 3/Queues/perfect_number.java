@@ -5,38 +5,26 @@ public class perfect_number {
 
     public int[] solve(int A) {
 
-        if (A == 1)
-            return new int[] { 1 };
-        if (A == 2)
-            return new int[] { 1, 2 };
-        if (A == 3)
-            return new int[] { 1, 2, 3 };
-
         Queue<Integer> q = new ArrayDeque<>();
-        int[] res = new int[A];
-        int idx = 3;
         q.add(1);
         q.add(2);
         q.add(3);
-        res[0] = 1;
-        res[1] = 2;
-        res[2] = 3;
-        int ins = 3;
+        int count = 3;
 
-        for (int i = 3; i < A; i++) {
+        int[] res = new int[A];
+
+        for (int k = 1; k <= A; k++) {
 
             int val = q.remove();
-            int n = 1;
+            res[k - 1] = val;
 
-            for (int p = 1; p <= 3; p++) {
+            for (int i = 1; i <= 3; i++) {
 
-                n = val * 10 + p;
-                q.add(n);
-                res[idx++] = n;
-                ins++;
+                if (count < A)
+                    q.add(val * 10 + i);
 
-                if (ins == A)
-                    return res;
+                else
+                    break;
             }
         }
 
