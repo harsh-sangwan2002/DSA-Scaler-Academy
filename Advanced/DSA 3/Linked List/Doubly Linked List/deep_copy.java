@@ -1,17 +1,16 @@
-//  Definition for singly-linked list.
-
 import java.util.HashMap;
 
-class RandomListNode {
-    int label;
-    RandomListNode next, random;
-
-    RandomListNode(int x) {
-        this.label = x;
-    }
-};
-
 public class deep_copy {
+
+    // Definition for singly-linked list.
+    class RandomListNode {
+        int label;
+        RandomListNode next, random;
+
+        RandomListNode(int x) {
+            this.label = x;
+        }
+    };
 
     public RandomListNode copyRandomList(RandomListNode head) {
 
