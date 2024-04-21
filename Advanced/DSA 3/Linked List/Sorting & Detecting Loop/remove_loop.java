@@ -1,15 +1,15 @@
-//  Definition for singly-linked list.
-class ListNode {
-    public int val;
-    public ListNode next;
-
-    ListNode(int x) {
-        val = x;
-        next = null;
-    }
-}
-
 public class remove_loop {
+
+    // Definition for singly-linked list.
+    class ListNode {
+        public int val;
+        public ListNode next;
+
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
 
     public ListNode solve(ListNode A) {
 
