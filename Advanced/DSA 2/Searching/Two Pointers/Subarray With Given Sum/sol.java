@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class sol {
 
     public int[] solve(int[] A, int B) {
