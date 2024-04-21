@@ -1,27 +1,30 @@
 public class palindrome_ll {
 
-    // Definition for singly-linked list.
-    class ListNode {
-        public int val;
-        public ListNode next;
+    public class ListNode {
 
-        ListNode(int x) {
-            val = x;
-            next = null;
+        int val;
+        ListNode next;
+
+        ListNode(int val) {
+            this.val = val;
+            this.next = null;
         }
     }
 
-    private int size(ListNode A) {
+    private ListNode findMid(ListNode A) {
 
-        ListNode temp = A;
-        int count = 0;
+        if (A == null || A.next == null)
+            return A;
 
-        while (temp != null) {
-            count++;
-            temp = temp.next;
+        ListNode slow = A, fast = A;
+
+        while (fast.next != null && fast.next.next != null) {
+
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
-        return count;
+        return slow;
     }
 
     private ListNode reverse(ListNode A) {
@@ -32,40 +35,35 @@ public class palindrome_ll {
         ListNode prev = null, curr = A;
 
         while (curr != null) {
-            ListNode node = curr.next;
+
+            ListNode next = curr.next;
             curr.next = prev;
             prev = curr;
-            curr = node;
+            curr = next;
         }
 
-        ListNode head = prev;
-        return head;
+        return prev;
     }
 
     public int lPalin(ListNode A) {
 
-        if (A == null || A.next == null)
+        if (A.next == null)
             return 1;
 
-        int half = size(A) / 2;
-        ListNode temp = A;
+        ListNode h1 = A;
 
-        for (int i = 1; i < half; i++)
-            temp = temp.next;
+        ListNode mid = findMid(A);
+        ListNode h2 = mid.next;
+        mid.next = null;
+        h2 = reverse(h2);
 
-        ListNode headB = temp.next;
-        temp.next = null;
+        while (h1 != null && h2 != null) {
 
-        ListNode t1 = A;
-        ListNode t2 = reverse(headB);
-
-        while (t1 != null && t2 != null) {
-
-            if (t1.val != t2.val)
+            if (h1.val != h2.val)
                 return 0;
 
-            t1 = t1.next;
-            t2 = t2.next;
+            h1 = h1.next;
+            h2 = h2.next;
         }
 
         return 1;
