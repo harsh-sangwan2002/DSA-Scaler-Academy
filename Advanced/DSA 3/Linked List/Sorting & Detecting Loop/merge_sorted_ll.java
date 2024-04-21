@@ -1,15 +1,15 @@
-//  Definition for singly-linked list.
-class ListNode {
-    public int val;
-    public ListNode next;
-
-    ListNode(int x) {
-        val = x;
-        next = null;
-    }
-}
-
 public class merge_sorted_ll {
+
+    // Definition for singly-linked list.
+    class ListNode {
+        public int val;
+        public ListNode next;
+
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
 
     public ListNode mergeTwoLists(ListNode A, ListNode B) {
 
@@ -18,17 +18,18 @@ public class merge_sorted_ll {
         if (B == null)
             return A;
 
-        ListNode h1 = A, h2 = B, head, tail;
+        ListNode head = null, tail = null;
+        ListNode h1 = A, h2 = B;
 
-        if (h1.val < h2.val) {
-            head = h1;
-            tail = h1;
+        if (A.val < B.val) {
+            head = A;
+            tail = A;
             h1 = h1.next;
         }
 
         else {
-            head = h2;
-            tail = h2;
+            head = B;
+            tail = B;
             h2 = h2.next;
         }
 
@@ -36,15 +37,15 @@ public class merge_sorted_ll {
 
             if (h1.val < h2.val) {
                 tail.next = h1;
-                tail = h1;
                 h1 = h1.next;
             }
 
             else {
                 tail.next = h2;
-                tail = h2;
                 h2 = h2.next;
             }
+
+            tail = tail.next;
         }
 
         if (h1 == null)
