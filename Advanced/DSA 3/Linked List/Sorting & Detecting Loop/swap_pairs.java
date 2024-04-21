@@ -1,4 +1,4 @@
-public class swap_nodes {
+public class swap_pairs {
 
     // Definition for singly-linked list.
     class ListNode {
@@ -16,12 +16,13 @@ public class swap_nodes {
         if (A == null || A.next == null)
             return A;
 
-        ListNode h2 = swapPairs(A.next.next);
-        ListNode temp = A;
-        ListNode res = temp.next;
-        temp.next.next = temp;
-        temp.next = h2;
+        ListNode h2 = A.next.next;
+        h2 = swapPairs(h2);
 
-        return res;
+        ListNode head = A.next;
+        head.next = A;
+        A.next = h2;
+
+        return head;
     }
 }
