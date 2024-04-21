@@ -2,13 +2,15 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Stack;
 
-public class reverse_ele {
+public class reverse_elements {
 
     public int[] solve(int[] A, int B) {
 
+        if (B == 1)
+            return A;
+
         Queue<Integer> q = new ArrayDeque<>();
         Stack<Integer> st = new Stack<>();
-        int[] res = new int[A.length];
         int idx = 0;
 
         for (int val : A)
@@ -18,11 +20,11 @@ public class reverse_ele {
             st.push(q.remove());
 
         while (st.size() != 0)
-            res[idx++] = st.pop();
+            A[idx++] = st.pop();
 
         while (q.size() != 0)
-            res[idx++] = q.remove();
+            A[idx++] = q.remove();
 
-        return res;
+        return A;
     }
 }
