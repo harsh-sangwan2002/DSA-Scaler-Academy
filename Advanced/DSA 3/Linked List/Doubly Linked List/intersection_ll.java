@@ -1,16 +1,15 @@
-//  Definition for singly-linked list.
-
-class ListNode {
-    public int val;
-    public ListNode next;
-
-    ListNode(int x) {
-        val = x;
-        next = null;
-    }
-}
-
 public class intersection_ll {
+
+    // Definition for singly-linked list.
+    class ListNode {
+        public int val;
+        public ListNode next;
+
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
 
     private int size(ListNode head) {
 
