@@ -1,13 +1,13 @@
 public class longest_palindrome {
 
-    // Definition for singly-linked list.
-    class ListNode {
-        public int val;
-        public ListNode next;
+    public class ListNode {
 
-        ListNode(int x) {
-            val = x;
-            next = null;
+        int val;
+        ListNode next;
+
+        ListNode(int val) {
+            this.val = val;
+            this.next = null;
         }
     }
 
@@ -20,9 +20,9 @@ public class longest_palindrome {
             if (h1.val != h2.val)
                 return count;
 
-            count++;
             h1 = h1.next;
             h2 = h2.next;
+            count++;
         }
 
         return count;
@@ -41,10 +41,10 @@ public class longest_palindrome {
             ListNode next = curr.next;
             curr.next = prev;
 
-            // odd length
-            ans = Math.max(ans, 2 * count(curr.next, next) + 1);
+            // odd length list
+            ans = Math.max(ans, 2 * count(prev, next) + 1);
 
-            // even length
+            // even length list
             ans = Math.max(ans, 2 * count(curr, next));
 
             prev = curr;
