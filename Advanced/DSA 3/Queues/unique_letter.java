@@ -1,31 +1,29 @@
 import java.util.ArrayDeque;
+import java.util.HashMap;
 import java.util.Queue;
 
 public class unique_letter {
 
     public String solve(String A) {
 
-        if (A == null || A.length() == 0)
-            return "";
-
+        HashMap<Character, Integer> map = new HashMap<>();
         Queue<Character> q = new ArrayDeque<>();
         StringBuilder sb = new StringBuilder();
 
-        int[] count = new int[26]; // Assuming only lowercase letters are used
+        for (int i = 0; i < A.length(); i++) {
 
-        for (char ch : A.toCharArray()) {
-            count[ch - 'a']++;
+            char ch = A.charAt(i);
             q.add(ch);
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
 
-            while (!q.isEmpty() && count[q.peek() - 'a'] > 1) {
+            while (q.size() != 0 && map.get(q.peek()) > 1)
                 q.remove();
-            }
 
-            if (q.isEmpty()) {
+            if (q.size() == 0)
                 sb.append('#');
-            } else {
+
+            else
                 sb.append(q.peek());
-            }
         }
 
         return sb.toString();
