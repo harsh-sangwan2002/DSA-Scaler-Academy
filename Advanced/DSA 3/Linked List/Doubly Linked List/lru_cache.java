@@ -15,99 +15,55 @@ public class lru_cache {
 
     Node head;
     Node tail;
-    int N;
-    int MAX;
-    HashMap<Integer, Node> mMap;
-
-    public void updateAccessList(Node node) {
-        Node temp = node.prev;
-        temp.next = node.next;
-        temp = node.next;
-        if (temp != null)
-            temp.prev = node.prev;
-
-        node.next = head;
-        head.prev = node;
-        node.prev = null;
-        head = node;
-    }
+    int capacity;
+    HashMap<Integer, Node> map;
 
     public lru_cache(int capacity) {
-        head = null;
-        tail = null;
-        MAX = capacity;
-        N = 0;
-        mMap = new HashMap<>();
+        this.capacity = capacity;
+        head = new Node(-1, -1); // Dummy head node
+        tail = new Node(-1, -1); // Dummy tail node
+        head.next = tail;
+        tail.prev = head;
+        map = new HashMap<>();
+    }
+
+    private void addToFront(Node node) {
+        node.next = head.next;
+        node.prev = head;
+        head.next.prev = node;
+        head.next = node;
+    }
+
+    private void removeFromList(Node node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
     }
 
     public int get(int key) {
-        if (N == 0)
+        if (!map.containsKey(key)) {
             return -1;
-
-        if (mMap.containsKey(key)) {
-            Node node = mMap.get(key);
-
-            if (key == head.key) {
-                return node.val;
-            }
-            if (tail.key == key) {
-                tail = tail.prev;
-            }
-
-            updateAccessList(node);
-
-            return node.val;
         }
-
-        return -1;
+        Node node = map.get(key);
+        removeFromList(node);
+        addToFront(node);
+        return node.val;
     }
 
     public void set(int key, int value) {
-
-        if (mMap.containsKey(key)) {
-
-            Node node = mMap.get(key);
-
-            if (node.key == head.key) {
-                node.val = value;
-                return;
-            }
-
-            if (tail.key == key) {
-                tail = tail.prev;
-            }
-
-            updateAccessList(node);
-
+        if (map.containsKey(key)) {
+            Node node = map.get(key);
             node.val = value;
-
-            return;
-        }
-
-        if (N == MAX) {
-            if (tail != null) {
-                mMap.remove(tail.key);
-                tail = tail.prev;
-
-                if (tail != null) {
-                    tail.next.prev = null;
-                    tail.next = null;
-                }
-                N--;
+            removeFromList(node);
+            addToFront(node);
+        } else {
+            if (map.size() == capacity) {
+                Node toRemove = tail.prev;
+                removeFromList(toRemove);
+                map.remove(toRemove.key);
             }
+            Node newNode = new Node(key, value);
+            map.put(key, newNode);
+            addToFront(newNode);
         }
-
-        Node node = new Node(key, value);
-        node.next = head;
-        if (head != null)
-            head.prev = node;
-
-        head = node;
-        N++;
-
-        if (N == 1)
-            tail = head;
-
-        mMap.put(key, node);
     }
 }
