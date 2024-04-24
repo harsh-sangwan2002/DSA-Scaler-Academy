@@ -26,14 +26,14 @@ public class colorful_number {
 
         while (A != 0) {
 
-            int digit = A % 10;
-            list.add(digit);
+            int rem = A % 10;
             A /= 10;
+            list.add(rem);
         }
 
         reverse(list);
-        Set<Integer> set = new HashSet<>();
 
+        Set<Integer> set = new HashSet<>();
         for (int i = 0; i < list.size(); i++) {
 
             int pr = 1;
