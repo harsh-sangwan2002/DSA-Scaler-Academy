@@ -22,10 +22,10 @@ public class noble_integer {
         Arrays.sort(A);
         reverse(A);
 
-        int count = 0;
-
         if (A[0] == 0)
             return 1;
+
+        int count = 0;
 
         for (int i = 1; i < A.length; i++) {
 
