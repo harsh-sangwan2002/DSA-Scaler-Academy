@@ -1,4 +1,4 @@
-public class row_to_column_zero {
+public class sol {
 
     public int[][] solve(int[][] A) {
 
