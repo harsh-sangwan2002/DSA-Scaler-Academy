@@ -21,6 +21,7 @@ public class optimised {
         }
 
         System.out.print(c);
+
         scn.close();
     }
 }

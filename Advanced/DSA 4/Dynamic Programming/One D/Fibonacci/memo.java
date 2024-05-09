@@ -30,5 +30,7 @@ public class memo {
 
         int res = solve(n, dp);
         System.out.print(res);
+
+        scn.close();
     }
 }
