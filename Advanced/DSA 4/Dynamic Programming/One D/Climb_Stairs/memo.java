@@ -1,15 +1,26 @@
+import java.util.Arrays;
+
 public class memo {
+
+    private int solve(int n, long mod, long[] dp) {
+
+        if (n == 0 || n == 1)
+            return 1;
+
+        if (dp[n] != -1L)
+            return (int) (dp[n] % mod);
+
+        dp[n] = (solve(n - 1, mod, dp) + solve(n - 2, mod, dp)) % mod;
+        return (int) (dp[n]);
+    }
 
     public int climbStairs(int A) {
 
         long mod = (long) (1e9 + 7);
         long[] dp = new long[A + 1];
-        dp[0] = 1L;
-        dp[1] = 1L;
 
-        for (int i = 2; i <= A; i++)
-            dp[i] = (dp[i - 1] + dp[i - 2]) % mod;
+        Arrays.fill(dp, -1L);
 
-        return (int) dp[A];
+        return solve(A, mod, dp);
     }
 }
