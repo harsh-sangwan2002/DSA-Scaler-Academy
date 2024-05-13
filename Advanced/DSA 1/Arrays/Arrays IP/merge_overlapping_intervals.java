@@ -1,23 +1,22 @@
-//  Definition for an interval.
 import java.util.ArrayList;
 import java.util.Collections;
 
-class Interval {
-    int start;
-    int end;
-
-    Interval() {
-        start = 0;
-        end = 0;
-    }
-
-    Interval(int s, int e) {
-        start = s;
-        end = e;
-    }
-}
-
 public class merge_overlapping_intervals {
+
+    static class Interval {
+        int start;
+        int end;
+
+        Interval() {
+            start = 0;
+            end = 0;
+        }
+
+        Interval(int s, int e) {
+            start = s;
+            end = e;
+        }
+    }
 
     public ArrayList<Interval> merge(ArrayList<Interval> intervals) {
 
