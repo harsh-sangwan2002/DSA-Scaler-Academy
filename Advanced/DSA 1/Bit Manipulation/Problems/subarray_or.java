@@ -23,6 +23,7 @@ public class subarray_or {
                 if (bit)
                     idx = j;
 
+                // Find the contribution of the ith bit in subarray starting with jth index
                 long contri = (n - idx) * 1L * (1 << i);
                 sum = (sum + contri) % mod;
             }
