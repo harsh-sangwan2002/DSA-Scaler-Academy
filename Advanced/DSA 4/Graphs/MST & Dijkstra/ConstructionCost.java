@@ -21,6 +21,8 @@ public class ConstructionCost {
             return 0;
 
         int ans = 0;
+
+        @SuppressWarnings("unchecked")
         List<Edge>[] graph = new ArrayList[A + 1];
         boolean[] vis = new boolean[A + 1];
 

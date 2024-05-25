@@ -19,7 +19,8 @@ public class PrimsAlgo {
 
         if (B.length == 0 || B[0].length == 0)
             return 0;
-
+            
+        @SuppressWarnings("unchecked")
         List<Edge>[] graph = new ArrayList[A + 1];
         boolean[] vis = new boolean[A + 1];
 
