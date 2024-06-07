@@ -31,6 +31,7 @@ public class MaximumDepth {
 
     }
 
+    @SuppressWarnings("unchecked")
     void BFS(ArrayList<ArrayList<Integer>> adjacencyList, HashMap<Integer, TreeSet<Integer>> map,
             ArrayList<Integer> D) {
         Queue<Integer> queue = new LinkedList<>(); // queue is implemented as a linked list.
@@ -50,6 +51,7 @@ public class MaximumDepth {
                 if (map.containsKey(depth)) {
                     map.get(depth).add(D.get(x - 1));
                 } else {
+                    @SuppressWarnings("rawtypes")
                     TreeSet temp = new TreeSet();
                     temp.add(D.get(x - 1));
                     map.put(depth, temp);
