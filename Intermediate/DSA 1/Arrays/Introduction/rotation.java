@@ -17,9 +17,14 @@ public class rotation {
 
         B = B % A.length;
 
-        reverse(A, 0, A.length - B - 1);
-        reverse(A, A.length - B, A.length - 1);
+        // Reverse entire array
         reverse(A, 0, A.length - 1);
+
+        // Reverse first B elements
+        reverse(A, 0, A.length - B - 1);
+
+        // Reverse the reamaining elements
+        reverse(A, A.length - B, A.length - 1);
 
         return A;
     }
